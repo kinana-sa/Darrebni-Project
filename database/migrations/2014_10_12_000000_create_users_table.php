@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('phone')->unique();
             $table->string('role')->nullable();
-            $table->string('fen_token');
+            $table->string('fcm_token');
             $table->rememberToken();
             $table->timestamps();
         });

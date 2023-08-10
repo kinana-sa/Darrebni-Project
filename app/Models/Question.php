@@ -14,7 +14,8 @@ class Question extends Model
 {
     use HasFactory;
     protected $fillable = ['uuid','content','reference','term_id','specialization_id','collage_id'];
-    public function users(){
+    public function users()
+    {
         return $this->belongsToMany(User::class)->withPivot('favorites');
     }
     public function term()
