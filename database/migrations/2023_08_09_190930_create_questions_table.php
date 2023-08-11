@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
+            $table->uuid('uuid')->unique();
             $table->string('content');
             $table->string('reference');
             $table->foreignId('term_id')->references('id')->on('terms')->cascadeOnDelete();

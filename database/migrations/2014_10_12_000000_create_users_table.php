@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
+            $table->uuid('uuid')->unique();
             $table->string('user_name');
-            $table->string('phone')->unique();
+            $table->string('phone',10);
             $table->string('role')->nullable();
             $table->string('fcm_token');
             $table->rememberToken();
