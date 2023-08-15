@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             CollageSeeder::class,
             TermSeeder::class,
             SpecializationSeeder::class,
-
+            CodeSeeder::class,
         ]);
     }
 }

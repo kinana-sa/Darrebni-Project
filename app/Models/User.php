@@ -28,6 +28,9 @@ class User extends Authenticatable
         'fcm_token'
     ];
 
+    protected $hidden = [
+        'remember_token',
+    ];
     public function code(){
         return $this->hasMany(Code::class);
     }
