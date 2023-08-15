@@ -7,12 +7,13 @@ use App\Models\User;
 use App\Models\Answer;
 use App\Models\Collage;
 use App\Models\Specialization;
+use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Question extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuid;
     protected $fillable = ['uuid','content','reference','term_id','specialization_id','collage_id'];
     public function users()
     {
@@ -30,8 +31,8 @@ class Question extends Model
     {
         return $this->belongsTo(Specialization::class);
     }
-    public function answers()
+    public function answer()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasOne(Answer::class);
     }
 }

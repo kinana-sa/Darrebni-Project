@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Code;
 use App\Models\Question;
+use App\Models\Traits\HasUuid;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuid;
 
     /**
      * The attributes that are mass assignable.
@@ -28,7 +29,7 @@ class User extends Authenticatable
     ];
 
     public function code(){
-        return $this->hasOne(Code::class);
+        return $this->hasMany(Code::class);
     }
     public function questions(){
         return $this->belongsToMany(Question::class)->withPivot('favorites');

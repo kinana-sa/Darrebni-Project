@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('user_name');
-            $table->string('phone',10);
+            $table->string('phone',20);
             $table->string('role')->nullable();
-            $table->string('fcm_token');
+            $table->string('fcm_token')->nullabl();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('content');
             $table->string('reference');
-            $table->foreignId('term_id')->references('id')->on('terms')->cascadeOnDelete();
+            $table->foreignId('term_id')->references('id')->on('terms')->cascadeOnDelete()->nullabl();
             $table->foreignId('collage_id')->references('id')->on('collages')->cascadeOnDelete();
             $table->foreignId('specialization_id')->references('id')->on('specializations')->cascadeOnDelete();
             

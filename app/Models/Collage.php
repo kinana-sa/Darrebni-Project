@@ -5,12 +5,13 @@ namespace App\Models;
 use App\Models\Code;
 use App\Models\Term;
 use App\Models\Question;
+use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Collage extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuid;
     protected $fillable = ['uuid','collage_name','category_id','image'];
 
     public function category(){
