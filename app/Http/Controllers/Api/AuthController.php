@@ -53,8 +53,14 @@ class AuthController extends Controller
         }
 
         $token = $user->createToken('Api-Token')->plainTextToken;
+        $data['token']=$token;
+        $data['user_name']=$user->user_name;
+        $collage=$user->code()->first()->collage_id;
 
-        return $this->successResponse($token, "Logged in successfuly", 200);
+
+        $data['collage']=Collage::find($collage)->first();
+       return $this->successResponse($data, "Logged in successfuly", 200);
+       // return $this->successResponse($token, "Logged in successfuly", 200);
 
     }
 
