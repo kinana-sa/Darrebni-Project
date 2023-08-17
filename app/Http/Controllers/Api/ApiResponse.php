@@ -10,7 +10,7 @@ trait ApiResponse {
             'data' => $data,
             'status' => true,
             'message' =>$message
-        
+
         ],$code);
     }
 
@@ -19,7 +19,7 @@ trait ApiResponse {
         return response()->json([
             'status' => false,
             'message' =>$message
-        
+
         ],$code);
     }
 
@@ -28,7 +28,7 @@ trait ApiResponse {
         return response()->json([
             'status' => false,
             'message' =>$message
-        
+
         ],400);
     }
     public function unauthorized($message= 'Unauthorized')
@@ -36,7 +36,7 @@ trait ApiResponse {
         return response()->json([
             'status' => false,
             'message' =>$message
-        
+
         ],401);
     }
 
@@ -45,7 +45,7 @@ trait ApiResponse {
         return response()->json([
             'status' => false,
             'message' =>$message
-        
+
         ],403);
     }
     public function notFound($message= 'Not Found')
@@ -53,7 +53,7 @@ trait ApiResponse {
         return response()->json([
             'status' => false,
             'message' =>$message
-        
+
         ],404);
     }
     public function serverError($message= 'Server Error')
@@ -61,7 +61,7 @@ trait ApiResponse {
         return response()->json([
             'status' => false,
             'message' =>$message
-        
+
         ],500);
     }
 }

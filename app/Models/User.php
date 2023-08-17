@@ -31,11 +31,11 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
     ];
-    public function code(){
+    public function codes(){
         return $this->hasMany(Code::class);
     }
     public function questions(){
         return $this->belongsToMany(Question::class)->withPivot('favorites');
     }
-    
+
 }

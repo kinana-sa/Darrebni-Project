@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\CollageResource;
 use App\Models\Code;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -43,7 +44,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $user = User::where('user_name', $request->user_name)
-            ->whereHas('code', function ($query) use ($request) {
+            ->whereHas('codes', function ($query) use ($request) {
                 $query->where('value', $request->passcode);
             })
             ->first();
@@ -53,8 +54,12 @@ class AuthController extends Controller
         }
 
         $token = $user->createToken('Api-Token')->plainTextToken;
-
-        return $this->successResponse($token, "Logged in successfuly", 200);
+        $code = Code::where('value', $request->passcode)->first();
+        $collage = Collage::Where('id', $code->collage_id)->first();
+        $data['token'] = $token;
+        $data['user_name'] = $user->user_name;
+        $data['collage'] = new CollageResource($collage);
+        return $this->successResponse($data, "Logged in successfuly", 200);
 
     }
 
