@@ -56,6 +56,7 @@ class AuthController extends Controller
         $token = $user->createToken('Api-Token')->plainTextToken;
         $code = Code::where('value', $request->passcode)->first();
         $collage = Collage::Where('id', $code->collage_id)->first();
+
         $data['token'] = $token;
         $data['user_name'] = $user->user_name;
         $data['collage'] = new CollageResource($collage);
