@@ -43,7 +43,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $user = User::where('user_name', $request->user_name)
-            ->whereHas('code', function ($query) use ($request) {
+            ->whereHas('codes', function ($query) use ($request) {
                 $query->where('value', $request->passcode);
             })
             ->first();
@@ -55,7 +55,7 @@ class AuthController extends Controller
         $token = $user->createToken('Api-Token')->plainTextToken;
         $data['token']=$token;
         $data['user_name']=$user->user_name;
-        $collage=$user->code()->first()->collage_id;
+        $collage=$user->codes()->first()->collage_id;
 
 
         $data['collage']=Collage::find($collage)->first();
