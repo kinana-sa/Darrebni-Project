@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CollageController;
+use App\Http\Controllers\Api\TermController;
 use App\Http\Controllers\Api\UserController;
 
 /*
@@ -29,6 +30,8 @@ Route::prefix('auth')->group(function(){
 });
 Route::prefix('auth')->middleware('auth:sanctum')->group(function(){
 Route::get('/userinformation/{id}',[UserController::class,'show']);
-Route::post('/update/{id}',[UserController::class,'update']);
+Route::put('/update/{id}',[UserController::class,'update']);
+Route::get('/getterm/{id}',[TermController::class,'show']);
+Route::get('/gettermspecialization/{id}',[TermController::class,'termspcialization']);
 });
 Route::get('/collages',[CollageController::class,'index']);
