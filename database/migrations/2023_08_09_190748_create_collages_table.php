@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('collage_name',50);
-            $table->string('image');
             $table->foreignId('category_id')->references('id')->on('categories')->cascadeOnDelete();
+            $table->string('image');
             $table->timestamps();
         });
     }

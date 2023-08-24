@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Resources\CollageResource;
 use App\Models\Code;
 use App\Models\User;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Collage;
+use Illuminate\Auth\Events\Login;
 
 class AuthController extends Controller
 {
@@ -34,7 +36,6 @@ class AuthController extends Controller
             ]);
             DB::commit();
             return $this->successResponse($user, 'User Registered Successfully.', 201);
-
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->errorResponse('Error. ' . $e->getMessage());
@@ -52,16 +53,13 @@ class AuthController extends Controller
         if (!$user) {
             return $this->errorResponse('Invalid User Name or Passcode', 401);
         }
-
         $token = $user->createToken('Api-Token')->plainTextToken;
-        $code = Code::where('value', $request->passcode)->first();
-        $collage = Collage::Where('id', $code->collage_id)->first();
-
+        $passcode = $request->passcode;
         $data['token'] = $token;
         $data['user_name'] = $user->user_name;
+        $collage = $user->codes()->where('value', $passcode)->first()->collage;
         $data['collage'] = new CollageResource($collage);
         return $this->successResponse($data, "Logged in successfuly", 200);
-
     }
 
     public function logout()
