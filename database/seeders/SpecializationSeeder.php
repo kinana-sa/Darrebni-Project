@@ -16,7 +16,7 @@ class SpecializationSeeder extends Seeder
     public function run()
     {
 
-        $Specialization = [
+        $it_specialization = [
             'اوتومات',
             'المترجمات',
             'قواعد المعطيات',
@@ -28,10 +28,33 @@ class SpecializationSeeder extends Seeder
             'داتابيز'
 
         ];
-        foreach ($Specialization as $sp) {
+        $arch_specialization = [
+            'تصميم معماري',
+            'تخطيط مدن',
+            'تاريخ العمارة',
+            'تصميمات تنفيذية'
+        ];
+        $med_specialization = [
+            'جراحة',
+            'باطنية',
+            'أطفال'
+        ];
+        foreach ($it_specialization as $it) {
             Specialization::create([
-                'specialization_name' => $sp,
+                'specialization_name' => $it,
                 'collage_id' => '1'
+            ]);
+        }
+        foreach ($arch_specialization as $arch) {
+            Specialization::create([
+                'specialization_name' => $arch,
+                'collage_id' => '2'
+            ]);
+        }
+        foreach ($med_specialization as $med) {
+            Specialization::create([
+                'specialization_name' => $med,
+                'collage_id' => '3'
             ]);
         }
     }

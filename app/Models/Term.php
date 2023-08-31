@@ -10,9 +10,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Term extends Model
 {
     use HasFactory, HasUuid;
-    protected $fillable=['uuid','term_name','collage_id'];
+    protected $fillable=['uuid','term_name','type', 'collage_id'];
     public function collage()
     {
         return $this->belongsTo(Collage::class);
+    }
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
 }

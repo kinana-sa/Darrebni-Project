@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('term_name');
             $table->foreignId('collage_id')->references('id')->on('collages')->cascadeOnDelete();
+            $table->boolean('type'); //Graduation or Master
             $table->timestamps();
         });
     }

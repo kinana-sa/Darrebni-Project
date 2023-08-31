@@ -18,8 +18,7 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('content');
             $table->string('reference');
-            $table->unsignedBigInteger('term_id')->nullable(); 
-            $table->foreign('term_id')->references('id')->on('terms')->onDelete('cascade');
+            $table->foreignId('term_id')->nullable()->references('id')->on('terms')->onDeleteCascade();
             $table->foreignId('collage_id')->references('id')->on('collages')->cascadeOnDelete();
             $table->foreignId('specialization_id')->references('id')->on('specializations')->cascadeOnDelete();
             

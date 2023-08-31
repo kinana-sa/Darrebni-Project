@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('value')->unique();
-            $table->unsignedBigInteger('user_id')->nullable(); 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('collage_id')->references('id')->on('collages')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('collage_id')->nullable()->references('id')->on('collages')->cascadeOnDelete();
             $table->timestamps();
         });
     }

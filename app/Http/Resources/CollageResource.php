@@ -17,7 +17,8 @@ class CollageResource extends JsonResource
         return [
             'id' => $this->uuid,
             'collage_name' => $this->collage_name,
-            'image' => $this->image,
+            'image' => config('app.base_image_url') . $this->image,
+            'category' => $this->category->name
 
         ];
 

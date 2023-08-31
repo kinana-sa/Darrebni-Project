@@ -16,12 +16,13 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name'=>'الكليات الطبية',
-            'image'=>'image'
+            'name'=>'الكليات الهندسية',
+            'image'=>'images/ARCH.svg'
          ]);
-         Category::create([
-             'name'=>'الكليات الهندسية',
-             'image'=>'image'
-          ]);
+        Category::create([
+            'name'=>'الكليات الطبية',
+            'image'=>'images/nurs.svg'
+        ]);
+         
     }
 }

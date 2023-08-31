@@ -194,4 +194,6 @@ return [
         // ...
     ])->toArray(),
 
+    'base_image_url' => 'https://laravel-team6.000webhostapp.com/',
+
 ];

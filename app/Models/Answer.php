@@ -9,9 +9,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Answer extends Model
 {
     use HasFactory, HasUuid;
-    protected $fillable=['uuid','content','isTrue','question_id'];
+    protected $fillable = ['uuid', 'content', 'is_correct', 'question_id'];
+
     public function question()
     {
         return $this->belongsTo(Question::class);
     }
+
+    // public function getOptionsAttribute($options)
+    // {
+    //     return json_decode($options, true);
+    // }
 }

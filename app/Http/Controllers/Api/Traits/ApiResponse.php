@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Traits;
 
 trait ApiResponse {
 
@@ -37,7 +37,7 @@ trait ApiResponse {
             'status' => false,
             'message' =>$message
 
-        ],401);
+        ],403);
     }
 
     public function unauthenticated($message= 'Unauthenticated')
@@ -46,7 +46,7 @@ trait ApiResponse {
             'status' => false,
             'message' =>$message
 
-        ],403);
+        ],401);
     }
     public function notFound($message= 'Not Found')
     {

@@ -24,9 +24,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_name' =>'required|string',
+            'user_name' =>'required|string|unique:users',
             'phone' =>'required|string|digits_between:7,20',
-            'collage_uuid' =>'required|exists:collages,uuid',
+            'collage_id' =>'required|exists:collages,uuid',
          ];
     }
 }

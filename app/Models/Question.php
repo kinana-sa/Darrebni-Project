@@ -8,6 +8,7 @@ use App\Models\Answer;
 use App\Models\Collage;
 use App\Models\Specialization;
 use App\Models\Traits\HasUuid;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -17,7 +18,7 @@ class Question extends Model
     protected $fillable = ['uuid','content','reference','term_id','specialization_id','collage_id'];
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('favorites');
+        return $this->belongsToMany(User::class,'favorites', 'question_id', 'user_id');
     }
     public function term()
     {
@@ -31,8 +32,13 @@ class Question extends Model
     {
         return $this->belongsTo(Specialization::class);
     }
-    public function answer()
+    public function answers()
     {
-        return $this->hasOne(Answer::class);
+        return $this->hasMany(Answer::class);
+    }
+
+    public function isFavorite()
+    {   
+        return auth()->user()->favorites->contains($this->id);
     }
 }
